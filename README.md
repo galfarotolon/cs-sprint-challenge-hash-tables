@@ -22,12 +22,45 @@ Commit your code regularly and meaningfully. This practice helps both you (in ca
 
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your answers beforehand.
 
-1. Hashing functions
-2. Collision resolution
-3. Performance of basic hash table operations
-4. Load factor
-5. Automatic resizing
-6. Various use cases for hash tables
+1 Hashing functions
+
+A hash function is a function where the input is any data, and the output is a number.
+The requirements for a hash function are:
+A hash function must be consistent (deterministic). Every time it receives the same input, it must return the same output. If it’s not deterministic, it is not a hash function.
+Different input data should return different numbers. 
+A hash function must return numbers that are within a specific range.
+
+The reason the hash function should return different numbers when given different input data is to minimize collisions. When a hash function maps each different input data to a different number, it is called a perfect hash function. In practice, unless we know all the possible data inputs, we can’t create a perfect hash function.
+ 
+2 Collision resolution
+
+ A way of handling collisions, that is, when two or more items should be kept in the same location, especially in a hash table.
+
+3 Performance of basic hash table operations
+
+Performance of basic hash table operations, even when collisions happen (which is unavoidable), if the hashing function is optimal it will spread the data somewhat evenly, chaining more than one value to the same index in some cases, but on average the performance will still be that of constant time O(1). 
+
+4 Load factor
+
+The load factor of a hash table is a simple calculation. You take the number of items stored in the hash table divided by the number of slots.
+
+Hash tables use an array for storage, so the load factor would be the number of occupied slots divided by the length of the array. So, an array of length 10 with three items in it has a load factor of 0.3, and an array of length 20 with twenty items has a load factor of 1. 
+As the load factor of a hash table increases, so does the chance of a collision occurring, which in turn reduces the performance of the hash table. It is good practice to constantly monitor the size of the hash table and dynamically resize it when it reaches certain thresholds. 
+ 
+ 
+5 Automatic resizing
+
+The load factor can also be too small. If the hash table is too large for the data that it is storing, then memory is being wasted. So, in addition to resizing, when the load factor gets too high, you should also resize when the load factor gets too low.
+Industry standards normally indicate that when a hash table load factor is greater than 0.7 it is common to double the size of the hash table. On the contrary, when the hash table load factor is 0.2 or below, the hash table size is reduced by a half. 
+By doing this operation, the currently stored data in the array must be re inserted into the hash table each time, with the data being reallocated constantly. Each item has to be rehashed. 
+Resizing effectively is an expensive operation, so it shouldn’t happen too often. However, when we average it out, hash tables are constant time (O(1)) even with resizing.
+ 
+6 Various use cases for hash tables
+
+Hash tables reduce operation time greatly just by the nature of this data structure. Because of this reason it makes it extremely fast to search for elements within large data sets. 
+Another good use would be to find duplicate elements in a data set, as the values are stored in the cache at first pass and can rapidly check from it if the value has already been stored or not. 
+Other use cases may implicate very expensive and / or slow functions such as the fibonacci sequence, which can rapidly become extremely exhaustive for a machine to compute once the numbers start becoming larger. Hash tables allow the previous computation to get stored, and the program just has to essentially search for the last two values added to the cache and add them together, without the need of doing the operations from scratch. 
+
 
 We expect you to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
